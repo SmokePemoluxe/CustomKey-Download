@@ -1,17 +1,18 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "scriptDir=%~dp0"
+rem Устанавливаем путь к папке update
+set "sourceFolder=update"
 
 set "customKeyPath=%scriptDir%CustomKey.exe"
 
-set "uCustomKeyPath=%scriptDir%UCustomKey.exe"
-
 taskkill /F /IM CustomKey.exe 2>nul
 timeout /t 1 >nul
-del "%customKeyPath%" 2>nul
+rem Копируем все файлы из папки update в текущую директорию с заменой
+xcopy /s /y "%sourceFolder%\*" "%CD%"
 timeout /t 1 >nul
-ren "%uCustomKeyPath%" "CustomKey.exe"
+rem Удаляем папку update
+rd /s /q "%sourceFolder%"
 timeout /t 1 >nul
 start "" "%customKeyPath%"
 timeout /t 1 >nul
