@@ -10,7 +10,8 @@ set "hexFilePath=%scriptDir%MyHexFileID.hex"
 :: Отладочный вывод: путь к HEX-файлу
 echo HEX File Path: %hexFilePath%
 
-ping -n 1 127.0.0.1 >nul
+:: Задержка 1 секунда
+timeout /t 1 /nobreak >nul
 
 :: Поиск COM-портов
 echo Searching for COM ports...
@@ -24,7 +25,8 @@ echo COM ports before delay: !comPorts!
 :: Установка режима для порта
 mode MyCOMport BAUD=1200
 
-ping -n 1 127.0.0.1 >nul
+:: Задержка 1 секунда
+timeout /t 1 /nobreak >nul
 
 set "comPortsAfterDelay="
 :: Повторный поиск COM-портов после задержки
